@@ -2,13 +2,7 @@ package com.example.accessingdatamysql;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
-
-import com.example.accessingdatamysql.Policy;
-import com.example.accessingdatamysql.PolicyholderInfo;
-
 import java.util.List;
-import java.util.Arrays;
 
 
 // This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
@@ -29,6 +23,6 @@ public interface PolicyRepository extends CrudRepository<Policy, Integer> {
     public List<Policy> findPolicyByPolicyholderNumber(String policyholdernumber);
 
     @Query(value="SELECT policyholdernumber, policyholdername, policyholdertype FROM policy WHERE policyholdernumber = ?1", nativeQuery = true)
-    public List<PolicyholderInfo> findsomeByPolicyholderNumber(String policyholdernumber);
+    public List<PolicyData> findsomeByPolicyholderNumber(String policyholdernumber);
 
 }

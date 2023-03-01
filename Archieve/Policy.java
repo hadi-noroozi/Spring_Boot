@@ -63,7 +63,7 @@ public class Policy {
 
 }
 
-interface PolicyholderInfo {
+interface PolicyData {
    String getPolicyholderNumber();
    String getPolicyholderName();
    Integer getPolicyholderType();

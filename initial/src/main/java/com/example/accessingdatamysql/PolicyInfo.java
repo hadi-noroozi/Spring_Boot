@@ -1,9 +1,11 @@
 package com.example.accessingdatamysql;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 /* define Entity */
 
@@ -48,6 +50,9 @@ public class PolicyInfo {
 
     @Column(name = "POLICYHOLDER_NAME")
     private String policyholdername;
+
+    @Column(name = "POLICYHOLDER_BIRTHDATE")
+    private String policyholderbirthdate;
 
     @Column(name = "POLICYHOLDER_ECONOMICCODE")
     private String policyholdereconomiccode;
@@ -95,7 +100,7 @@ public class PolicyInfo {
     private String policyduration;
 
     @Column(name = "TOTAL_INSURED")
-    private Integer totalinsured;
+    private Long totalinsured;
 
     @Column(name = "POLICY_PREMIUM")
     private Integer policypremium;
@@ -137,11 +142,11 @@ public class PolicyInfo {
         this.policynumber = policynumber;
     }
 
-    public String getFieldId() {
+    public Integer getFieldId() {
         return fieldid;
     }
 
-    public void setFieldId(String fieldid) {
+    public void setFieldId(Integer fieldid) {
         this.fieldid = fieldid;
     }
 
@@ -153,11 +158,11 @@ public class PolicyInfo {
         this.fieldname = fieldname;
     }    
 
-    public String getSubfieldId() {
+    public Integer getSubfieldId() {
         return subfieldid;
     }
 
-    public void setSubfieldId(String subfieldid) {
+    public void setSubfieldId(Integer subfieldid) {
         this.subfieldid = subfieldid;
     }
     
@@ -169,11 +174,11 @@ public class PolicyInfo {
         this.subfieldname = subfieldname;
     }  
 
-    public String getSubjectId() {
+    public Integer getSubjectId() {
         return subjectid;
     }
 
-    public void setSubjectId(String subjectid) {
+    public void setSubjectId(Integer subjectid) {
         this.subjectid = subjectid;
     }
 
@@ -217,6 +222,14 @@ public class PolicyInfo {
         this.policyholdername = policyholdername;
     }
 
+    public String getPolicyholderBirthdate() {
+        return policyholderbirthdate;
+    }
+
+    public void setPolicyholderBirthdate(String policyholderbirthdate) {
+        this.policyholderbirthdate = policyholderbirthdate;
+    }
+
     public String getPolicyholderEconomicCode() {
         return policyholdereconomiccode;
     }
@@ -225,10 +238,210 @@ public class PolicyInfo {
         this.policyholdereconomiccode = policyholdereconomiccode;
     }
 
+    public Integer getPolicyholderGender() {
+        return policyholdergender;
+    }
+
+    public void setPolicyholderGender(Integer policyholdergender) {
+        this.policyholdergender = policyholdergender;
+    }
+
+    public String getPolicyPatternName() {
+        return policypatternname;
+    }      
+
+    public void setPolicyPatternName(String policypatternname) {
+        this.policypatternname = policypatternname;
+    }
+
+    public Integer getPolicyPatternId() {
+        return policypatternid;
+    }
+
+    public void setPolicyPatternId(Integer policypatternid) {
+        this.policypatternid = policypatternid;
+    }
+
+    public Integer getPolicyYear() {
+        return policyyear;
+    }
+
+    public void setPolicyYear(Integer policyyear) {
+        this.policyyear = policyyear;
+    }
+
+    public Integer getBranchId() {
+        return branchid;
+    }
+
+    public void setBranchId(Integer branchid) {
+        this.branchid = branchid;
+    }
+
+    public String getBranchName() {
+        return branchname;
+    }
+
+    public void setBranchName(String branchname) {
+        this.branchname = branchname;
+    }
+
+    public Integer getAgentId() {
+        return agentid;
+    }
+
+    public void setAgentId(Integer agentid) {
+        this.agentid = agentid;
+    }
+
+    public String getAgentName() {
+        return agentname;
+    }
+
+    public void setAgentName(String agentname) {
+        this.agentname = agentname;
+    }
+
+    public Integer getBrokerId() {
+        return brokerid;
+    }
+
+    public void setBrokerId(Integer brokerid) {
+        this.brokerid = brokerid;
+    }
+
+    public String getBrokerName() {
+        return brokername;
+    }
+
+    public void setBrokerName(String brokername) {
+        this.brokername = brokername;
+    }
+
+    public String getPolicySaleType() {
+        return policysaletype;
+    }
+
+    public void setPolicySaleType(String policysaletype) {
+        this.policysaletype = policysaletype;
+    }
+
+    public String getPolicyStartDate() {
+        return policystartdate;
+    }      
+
+    public void setPolicyStartDate(String policystartdate) {
+        this.policystartdate = policystartdate;
+    }
+
+    public String getPolicyEndDate() {
+        return policyenddate;
+    }      
+
+    public void setPolicyEndDate(String policyenddate) {
+        this.policyenddate = policyenddate;
+    }
+
+    public String getPolicyDuration() {
+        return policyduration;
+    }      
+
+    public void setPolicyDuration(String policyduration) {
+        this.policyduration = policyduration;
+    }    
+
+    public Long getTotalInsured() {
+        return totalinsured;
+    }
+
+    public void setTotalInsured(Long totalinsured) {
+        this.totalinsured = totalinsured;
+    }    
+
+    public Integer getPolicyPremium() {
+        return policypremium;
+    }
+
+    public void setPolicyPremium(Integer policypremium) {
+        this.policypremium = policypremium;
+    }    
+
+    public Integer getTax() {
+        return tax;
+    }
+
+    public void setTax(Integer tax) {
+        this.tax = tax;
+    }    
+    
+    public Integer getToll() {
+        return toll;
+    }
+
+    public void setToll(Integer toll) {
+        this.toll = toll;
+    }    
+    
+    public Integer getHealthTax() {
+        return healthtax;
+    }
+
+    public void setHealthTax(Integer healthtax) {
+        this.healthtax = healthtax;
+    }    
+    
+    public String getBasePolicyholderName() {
+        return basepolicyholdername;
+    }      
+
+    public void setBasePolicyholderName(String basepolicyholdername) {
+        this.basepolicyholdername = basepolicyholdername;
+    }  
+    
+    public String getBasePolicyholderNumber() {
+        return basepolicyholdernumber;
+    }      
+
+    public void setBasePolicyholderNumber(String basepolicyholdernumber) {
+        this.basepolicyholdernumber = basepolicyholdernumber;
+    }      
+    
+    public Integer getProvinceId() {
+        return provinceid;
+    }
+
+    public void setProvinceId(Integer provinceid) {
+        this.provinceid = provinceid;
+    }     
+    
+    public String getProvinceName() {
+        return provincename;
+    }      
+
+    public void setProvinceName(String provincename) {
+        this.provincename = provincename;
+    }      
+
 }
 
 interface PolicyholderInfo {
-   String getPolicyholderNumber();
-   String getPolicyholderName();
-   Integer getPolicyholderType();
+    Integer getPolicyholderType();
+    String getPolicyholderName();
+    String getPolicyholderNumber();
+    String getPolicyholderBirthdate();
+    Integer getPolicyholderGender();
+    String getBasePolicyholderNumber();
+    String getBasePolicyholderName();
+    Integer getPolicyPatternId();
+    String getPolicyPatternName();
+    String getPolicyholderEconomicCode();
+    Integer getFieldId();
+    String getFieldName();
+    String getPolicyIssueDate();
+}
+
+interface PolicyData {
+    String getPolicyholderNumber();
+    String getPolicyholderName();
+    Integer getPolicyholderType();
 }
