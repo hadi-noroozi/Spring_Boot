@@ -1,5 +1,8 @@
 package com.example.accessingdatamysql;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,9 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.List;
-
 
 
 @Controller // This means that this class is a Controller
@@ -49,39 +49,43 @@ public class MainController {
         return userRepository.findCountUsingNative();
     }
 
-    // @GetMapping(path="/policy")
-    // public @ResponseBody int getCountPolicies() {
-    //     return policyRepository.findCountUsingNative();
-    // }
+    /*
 
-    // @GetMapping(path="/policies")
-    // public @ResponseBody Iterable<Policy> getAllPolicies() {
-    //     // This returns a JSON or XML with the users
-    //     return policyRepository.findAll();
-    // }
+    @GetMapping(path="/policy")
+    public @ResponseBody int getCountPolicies() {
+        return policyRepository.findCountUsingNative();
+    }
 
-    // @GetMapping(path="/policy/id")
-    // public @ResponseBody Iterable<Policy> getPolicies(@RequestParam("id") Integer id) {
-    //     // This returns a JSON or XML with the users
-    //     return policyRepository.findPolicyById(id);
-    // }
+    @GetMapping(path="/policies")
+    public @ResponseBody Iterable<Policy> getAllPolicies() {
+        // This returns a JSON or XML with the users
+        return policyRepository.findAll();
+    }
 
-    // @GetMapping(path="/policy/name")
-    // public @ResponseBody String getNamePolicies() {
-    //     return policyRepository.findNamePolicy();
-    // }
+    @GetMapping(path="/policy/id")
+    public @ResponseBody Iterable<Policy> getPolicies(@RequestParam("id") Integer id) {
+        // This returns a JSON or XML with the users
+        return policyRepository.findPolicyById(id);
+    }
 
-    // @GetMapping(path="/policy/policyholdernumber")
-    // public @ResponseBody List<Policy> getPoliciesByPolicyholderNmmber(@RequestParam("policyholdernumber") String policyholdernumber) {
-    //     // This returns a JSON or XML with the users
-    //     return policyRepository.findPolicyByPolicyholderNumber(policyholdernumber);
-    // }
+    @GetMapping(path="/policy/name")
+    public @ResponseBody String getNamePolicies() {
+        return policyRepository.findNamePolicy();
+    }
 
-    // @GetMapping(path="/policy/idname")
-    // public @ResponseBody List<PolicyData> getSomeByPolicyholderNmmber(@RequestParam("policyholdernumber") String policyholdernumber) {
-    //     // This returns a JSON or XML with the users
-    //     return policyRepository.findsomeByPolicyholderNumber(policyholdernumber);
-    // }
+    @GetMapping(path="/policy/policyholdernumber")
+    public @ResponseBody List<Policy> getPoliciesByPolicyholderNmmber(@RequestParam("policyholdernumber") String policyholdernumber) {
+        // This returns a JSON or XML with the users
+        return policyRepository.findPolicyByPolicyholderNumber(policyholdernumber);
+    }
+
+    @GetMapping(path="/policy/idname")
+    public @ResponseBody List<PolicyData> getSomeByPolicyholderNmmber(@RequestParam("policyholdernumber") String policyholdernumber) {
+        // This returns a JSON or XML with the users
+        return policyRepository.findsomeByPolicyholderNumber(policyholdernumber);
+    }
+
+    */
 
     @GetMapping(path="/policy/policynumber")
     public @ResponseBody Iterable<PolicyInfo> findPolicy(@RequestParam("policynumber") String policynumber) {
@@ -94,18 +98,28 @@ public class MainController {
         @RequestParam("policyholdernumber") String policyholdernumber,
         @RequestParam("lowdate") String lowdate,
         @RequestParam("highdate") String highdate
-        ) {
+    ) {
         // This returns a JSON or XML with the users
         return policyInfoRepository.findPolicyholderInfo(policyholdernumber, lowdate, highdate);
     }
     
     @GetMapping(path="/policyholdercount")
-        public @ResponseBody int getCountPolicyholder(
-        @RequestParam("policyholdernumber") String policyholdernumber,
-        @RequestParam("lowdate") String lowdate,
-        @RequestParam("highdate") String highdate
-        ) {
+    public @ResponseBody int getCountPolicyholder(
+        @RequestParam("lowdate") String lowdate
+        , @RequestParam("highdate") String highdate
+        , @RequestParam("policyholdernumber") Optional<String> policyholdernumber
+        , @RequestParam("policyholdername") Optional<String> policyholdername
+        , @RequestParam("fieldid") Optional<List<Long>> fieldid
+        , @RequestParam("policynumber") Optional<String> policynumber
+    ) {
         // This returns a JSON or XML with the users
-        return policyInfoRepository.findCountOfIndividual(policyholdernumber, lowdate, highdate);
+        return policyInfoRepository.findCountOfIndividual(
+            lowdate
+            , highdate
+            , policyholdernumber
+            , policyholdername
+            , fieldid
+            , policynumber
+        );
     }
 }
