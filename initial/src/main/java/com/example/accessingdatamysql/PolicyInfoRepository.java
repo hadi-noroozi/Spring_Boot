@@ -25,10 +25,10 @@ public interface PolicyInfoRepository extends CrudRepository<PolicyInfo, Integer
                     "POLICY_ISSUE_DATE >= ?2 and POLICY_ISSUE_DATE <= ?3", nativeQuery = true)
     public Iterable<PolicyholderInfo> findPolicyholderInfo(String policyholdernumber, String lowdate, String highdate);
 
-//  @Query(value = "SELECT COUNT(DISTINCT(POLICYHOLDER_NUMBER)) FROM vw_arzyab_plcy" + 
-//     "WHERE POLICYHOLDER_NUMBER = ?1 AND" +
-//     "POLICY_ISSUE_DATE >= ?2 and POLICY_ISSUE_DATE <= ?3", nativeQuery = true)
-//  public int findCountOfIndividual(String policyholdernumber, String lowdate, String highdate);
+    @Query(value = "SELECT COUNT(DISTINCT(POLICYHOLDER_NUMBER)) " + 
+                    "FROM vw_arzyab_plcy WHERE POLICYHOLDER_NUMBER = ?1 AND " +
+                    "POLICY_ISSUE_DATE >= ?2 AND POLICY_ISSUE_DATE <= ?3", nativeQuery = true)
+    public int findCountOfIndividual(String policyholdernumber, String lowdate, String highdate);
 
 }
 

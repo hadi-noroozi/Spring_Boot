@@ -99,4 +99,13 @@ public class MainController {
         return policyInfoRepository.findPolicyholderInfo(policyholdernumber, lowdate, highdate);
     }
     
+    @GetMapping(path="/policyholdercount")
+        public @ResponseBody int getCountPolicyholder(
+        @RequestParam("policyholdernumber") String policyholdernumber,
+        @RequestParam("lowdate") String lowdate,
+        @RequestParam("highdate") String highdate
+        ) {
+        // This returns a JSON or XML with the users
+        return policyInfoRepository.findCountOfIndividual(policyholdernumber, lowdate, highdate);
+    }
 }
