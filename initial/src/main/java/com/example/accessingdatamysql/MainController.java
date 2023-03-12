@@ -25,6 +25,9 @@ public class MainController {
     @Autowired
     private PolicyInfoRepository policyInfoRepository;
 
+    @Autowired
+    private EndorsementRepository endorsementRepository;
+
     @PostMapping(path="/add") // Map ONLY POST Requests
     public @ResponseBody String addNewUser (@RequestParam String name
         , @RequestParam String email) {
@@ -87,22 +90,8 @@ public class MainController {
 
     */
 
-    @GetMapping(path="/policy/policynumber")
-    public @ResponseBody Iterable<PolicyInfo> findPolicy(@RequestParam("policynumber") String policynumber) {
-        // This returns a JSON or XML with the users
-        return policyInfoRepository.findPolicyByPolicyNumber(policynumber);
-    }
+    // Policy Methods
 
-    @GetMapping(path="/policyholder")
-    public @ResponseBody Iterable<PolicyholderInfo> getSomeByPolicyholderNmmber(
-        @RequestParam("policyholdernumber") String policyholdernumber,
-        @RequestParam("lowdate") String lowdate,
-        @RequestParam("highdate") String highdate
-    ) {
-        // This returns a JSON or XML with the users
-        return policyInfoRepository.findPolicyholderInfo(policyholdernumber, lowdate, highdate);
-    }
-    
     @GetMapping(path="/policyholdercount")
     public @ResponseBody int getCountPolicyholder(
         @RequestParam("lowdate") String lowdate
@@ -111,6 +100,14 @@ public class MainController {
         , @RequestParam("policyholdername") Optional<String> policyholdername
         , @RequestParam("fieldid") Optional<List<Long>> fieldid
         , @RequestParam("policynumber") Optional<String> policynumber
+        , @RequestParam("provinceid") Optional<Long> provinceid
+        , @RequestParam("branchid") Optional<Long> branchid
+        , @RequestParam("agentid") Optional<Long> agentid
+        , @RequestParam("brokerid") Optional<Long> brokerid
+        , @RequestParam("basepolicyholdernumber") Optional<String> basepolicyholdernumber
+        , @RequestParam("basepolicyholdername") Optional<String> basepolicyholdername
+        , @RequestParam("policypatternid") Optional<Long> policypatternid
+        , @RequestParam("policypatternname") Optional<String> policypatternname
     ) {
         // This returns a JSON or XML with the users
         return policyInfoRepository.findCountOfIndividual(
@@ -120,6 +117,121 @@ public class MainController {
             , policyholdername
             , fieldid
             , policynumber
+            , provinceid
+            , branchid
+            , agentid
+            , brokerid
+            , basepolicyholdernumber
+            , basepolicyholdername
+            , policypatternid
+            , policypatternname
+        );
+    }    
+
+    @GetMapping(path="/policyholder")
+    public @ResponseBody Iterable<PolicyholderInfo> getSomeByPolicyholderNmmber(
+        @RequestParam("lowdate") String lowdate
+        , @RequestParam("highdate") String highdate
+        , @RequestParam("policyholdernumber") Optional<String> policyholdernumber
+        , @RequestParam("policyholdername") Optional<String> policyholdername
+        , @RequestParam("fieldid") Optional<List<Long>> fieldid
+        , @RequestParam("policynumber") Optional<String> policynumber
+        , @RequestParam("provinceid") Optional<Long> provinceid
+        , @RequestParam("branchid") Optional<Long> branchid
+        , @RequestParam("agentid") Optional<Long> agentid
+        , @RequestParam("brokerid") Optional<Long> brokerid
+        , @RequestParam("basepolicyholdernumber") Optional<String> basepolicyholdernumber
+        , @RequestParam("basepolicyholdername") Optional<String> basepolicyholdername
+        , @RequestParam("policypatternid") Optional<Long> policypatternid
+        , @RequestParam("policypatternname") Optional<String> policypatternname
+    ) {
+        // This returns a JSON or XML with the users
+        return policyInfoRepository.findPolicyholderInfo(
+            lowdate
+            , highdate
+            , policyholdernumber
+            , policyholdername
+            , fieldid
+            , policynumber
+            , provinceid
+            , branchid
+            , agentid
+            , brokerid
+            , basepolicyholdernumber
+            , basepolicyholdername
+            , policypatternid
+            , policypatternname
         );
     }
+
+    @GetMapping(path="/policylist")
+    public @ResponseBody Iterable<PolicyList> getPoliciesListByPolicyholderNmmber(
+        @RequestParam("lowdate") String lowdate
+        , @RequestParam("highdate") String highdate
+        , @RequestParam("policyholdernumber") Optional<String> policyholdernumber
+        , @RequestParam("policyholdername") Optional<String> policyholdername
+        , @RequestParam("fieldid") Optional<List<Long>> fieldid
+        , @RequestParam("policynumber") Optional<String> policynumber
+        , @RequestParam("provinceid") Optional<Long> provinceid
+        , @RequestParam("branchid") Optional<Long> branchid
+        , @RequestParam("agentid") Optional<Long> agentid
+        , @RequestParam("brokerid") Optional<Long> brokerid
+        , @RequestParam("basepolicyholdernumber") Optional<String> basepolicyholdernumber
+        , @RequestParam("basepolicyholdername") Optional<String> basepolicyholdername
+        , @RequestParam("policypatternid") Optional<Long> policypatternid
+        , @RequestParam("policypatternname") Optional<String> policypatternname
+    ) {
+        // This returns a JSON or XML with the users
+        return policyInfoRepository.findPoliciesListByPolicyNumber(
+            lowdate
+            , highdate
+            , policyholdernumber
+            , policyholdername
+            , fieldid
+            , policynumber
+            , provinceid
+            , branchid
+            , agentid
+            , brokerid
+            , basepolicyholdernumber
+            , basepolicyholdername
+            , policypatternid
+            , policypatternname
+        );
+    }
+    
+    @GetMapping(path="/policyinfo")
+    public @ResponseBody Iterable<PolicyInfo> findPolicy(
+        @RequestParam("policynumber") String policynumber
+    ) {
+        // This returns a JSON or XML with the users
+        return policyInfoRepository.findPolicyByPolicyNumber(
+            policynumber
+        );
+    }
+
+    // Endorsement Methods
+
+    @GetMapping(path="/endorsementlist")
+    public @ResponseBody Iterable<EndorsementList> findEndorsementList(
+        @RequestParam("policynumbers") List<String> policynumbers
+    ) {
+        // This returns a JSON or XML with the users
+        return endorsementRepository.findEndorsementListByPolicyNumber(
+            policynumbers
+        );
+    }
+
+    @GetMapping(path="/endorsement")
+    public @ResponseBody Iterable<Endorsement> findEndorsement(
+        @RequestParam("policynumber") String policynumber
+    ) {
+        // This returns a JSON or XML with the users
+        return endorsementRepository.findEndorsementByPolicyNumber(
+            policynumber
+        );
+    }
+
+
+
 }

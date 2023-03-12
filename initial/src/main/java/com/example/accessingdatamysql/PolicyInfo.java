@@ -440,6 +440,24 @@ interface PolicyholderInfo {
     String getPolicyIssueDate();
 }
 
+interface PolicyList {
+    Integer getFieldId();
+    String getFieldName();
+    String getPolicyNumber();
+    String getPolicySaleType();
+    String getPolicyIssueDate();
+    String getPolicyStartDate();
+    String getPolicyEndDate();
+    Long getTotalInsured();
+    Integer getPolicyPremium();
+    Integer getBranchId();
+    String getBranchName();
+    Integer getAgentId();
+    String getAgentName();
+    Integer getBrokerId();
+    String getBrokerName();
+}
+
 interface PolicyData {
     String getPolicyholderNumber();
     String getPolicyholderName();
